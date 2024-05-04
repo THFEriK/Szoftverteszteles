@@ -1,6 +1,7 @@
 package com.epam.ta.unideb.stepdefinition;
 
 import com.epam.ta.unideb.factory.WebDriverFactory;
+import com.epam.ta.unideb.pageObjects.ArticlesPage;
 import com.epam.ta.unideb.pageObjects.CommunitiesPage;
 import com.epam.ta.unideb.pageObjects.EventsPage;
 import com.epam.ta.unideb.pageObjects.HomePage;
@@ -28,6 +29,8 @@ public class StepDefinitions {
 
     @Autowired
     private EventsPage eventsPage;
+    @Autowired
+    private ArticlesPage articlesPage;
 
     @Given("the communities portal is opened")
     public void communitiesPortalOpened() {
@@ -43,6 +46,9 @@ public class StepDefinitions {
     public void iClickTheEventsButton() {
         homePage.clickEvents();
     }
+
+    @When("I click the articles button")
+    public void iClickTheArticlesButton() { homePage.clickArticles();}
 
     @And("I type {string} in search")
     public void iTypeInSearch(String searchString) {
@@ -74,6 +80,22 @@ public class StepDefinitions {
     @And("I see {int} card on Events Page")
     public void iSeeCardEvents(int count) {
         Assert.assertEquals(count, eventsPage.getCardcountOnPage());
+    }
+
+    @And("I type {string} in search on Articles Page")
+    public void iTypeInSearchArticles(String searchString) {
+        articlesPage.searchFor(searchString);
+    }
+
+    @Then("I see the {string} card on Articles Page")
+    public void iSeeTheCardArticles(String title) {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.textToBePresentInElement(articlesPage.getCard(), title));
+    }
+
+    @And("I see {int} card on Articles Page")
+    public void iSeeCardArticles(int count) {
+        Assert.assertEquals(count, articlesPage.getCardcountOnPage());
     }
 
 }

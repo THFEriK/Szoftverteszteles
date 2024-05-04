@@ -16,6 +16,8 @@ public class HomePage extends CommonPageObject {
 
     @FindBy(className = "events-icon")
     private WebElement eventsButton;
+    @FindBy(className = "articles-icon")
+    private WebElement articlesButton;
 
     public HomePage(WebDriverFactory factory) {
         super(factory);
@@ -28,4 +30,6 @@ public class HomePage extends CommonPageObject {
     public void clickEvents() {
         eventsButton.click();
     }
+
+    public void clickArticles() { articlesButton.click(); }
 }
