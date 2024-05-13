@@ -26,3 +26,12 @@ Feature: Wearecommunity page
     And I type "A short story of Testing" in search on Articles Page
     Then I see the "A short story of Testing Community Poland" card on Articles Page
     And I see 1 card on Articles Page
+
+  Scenario: Sort elements
+    Given the communities portal is opened
+    When I click the communities button
+    And I click the Sort by button
+    Then I see the dropdown menu
+    When I click the A - Z button
+    Then the cards should be in alphabetic order
+

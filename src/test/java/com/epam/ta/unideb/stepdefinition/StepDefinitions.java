@@ -10,11 +10,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.Duration;
+
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 public class StepDefinitions {
 
@@ -98,4 +101,36 @@ public class StepDefinitions {
         Assert.assertEquals(count, articlesPage.getCardcountOnPage());
     }
 
+    @And("I click the Sort by button")
+    public void clickSortByButton(){communitiesPage.clickSortBy();}
+
+    @Then("I see the dropdown menu")
+    public void iSeeDropdownMenu() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+        .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-sorting-dropdown.show")));
+    }
+
+    @When("I click the A - Z button")
+    public void clickAlphabeticSortButton(){communitiesPage.clickAlphabeticSort();}
+
+    @Then("the cards should be in alphabetic order")
+    public void verifyAlphabeticalOrderInCommunities() {
+
+        //just wait for sorting to actually happen
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        String expectedTitle = "accessibility expertise";
+
+        WebElement cardTitleElement = new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(
+                        By.cssSelector(".evnt-communities-row .evnt-communities-column:nth-child(1) .evnt-community-card h2")));
+
+        String actualTitle = cardTitleElement.getText().toLowerCase();
+
+        Assert.assertEquals(expectedTitle, actualTitle);
+    }
 }

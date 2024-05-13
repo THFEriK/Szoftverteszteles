@@ -22,6 +22,12 @@ public class CommunitiesPage extends CommonPageObject {
     @FindBy(css = ".evnt-communities-row .evnt-communities-column")
     private List<WebElement> cards;
 
+    @FindBy(css = ".evnt-sorting-button.btn.dropdown-toggle")
+    private WebElement sortByButton;
+
+    @FindBy(css = ".evnt-dropdown-menu .dropdown-item:first-child")
+    private WebElement alphabeticSortButton;
+
     public void searchFor(String searchTerm) {
         searchField.sendKeys(searchTerm);
     }
@@ -33,5 +39,9 @@ public class CommunitiesPage extends CommonPageObject {
     public WebElement getCard() {
         return card;
     }
+
+    public void clickSortBy() {sortByButton.click();}
+
+    public void clickAlphabeticSort() {alphabeticSortButton.click();}
 
 }
