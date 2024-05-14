@@ -18,6 +18,10 @@ public class HomePage extends CommonPageObject {
     private WebElement eventsButton;
     @FindBy(className = "articles-icon")
     private WebElement articlesButton;
+    @FindBy(css = ".evnt-tools-menu.language.nav-item")
+    private WebElement languageButton;
+    @FindBy(css = "#language-menu-dropdown > a:nth-child(3)")
+    private WebElement russianLangButton;
 
     public HomePage(WebDriverFactory factory) {
         super(factory);
@@ -32,4 +36,7 @@ public class HomePage extends CommonPageObject {
     }
 
     public void clickArticles() { articlesButton.click(); }
+
+    public void clickLanguages() { languageButton.click();}
+    public void clickRussianLang() {russianLangButton.click();}
 }

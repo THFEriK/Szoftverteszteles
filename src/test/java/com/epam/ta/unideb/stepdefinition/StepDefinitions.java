@@ -132,5 +132,20 @@ public class StepDefinitions {
         String actualTitle = cardTitleElement.getText().toLowerCase();
 
         Assert.assertEquals(expectedTitle, actualTitle);
+
+    }
+    @And("I click the eng button")
+    public void clickLanguagesButton(){ homePage.clickLanguages();}
+    @Then("I see the language dropdown menu")
+    public void iSeeLanguageDropdownMenu() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-tools-menu.language.nav-item.show")));
+    }
+    @When("I click the Русский button")
+    public void clickRussianLangButton(){homePage.clickRussianLang();}
+    @Then("The site language should be russian")
+    public void iSeeTheCardArticles() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.textToBe(By.cssSelector("#popular > div > span"),"Популярные"));
     }
 }

@@ -35,3 +35,9 @@ Feature: Wearecommunity page
     When I click the A - Z button
     Then the cards should be in alphabetic order
 
+  Scenario: Changing languages
+    Given the communities portal is opened
+    When I click the eng button
+    Then I see the language dropdown menu
+    When I click the Русский button
+    Then The site language should be russian
