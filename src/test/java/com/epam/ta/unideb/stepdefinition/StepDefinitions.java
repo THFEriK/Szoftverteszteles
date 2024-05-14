@@ -16,7 +16,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
+import java.util.Locale;
 
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 public class StepDefinitions {
@@ -132,6 +136,40 @@ public class StepDefinitions {
         String actualTitle = cardTitleElement.getText().toLowerCase();
 
         Assert.assertEquals(expectedTitle, actualTitle);
+
+    }
+    @And("I click the past events button")
+    public void clickPastEventsButton(){ eventsPage.clickPastEvents();}
+    @Then("I see the past events")
+    public void iSeePastEvents() throws ParseException {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WebElement cardDateElement = new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-card-wrapper .evnt-card-heading .evnt-details-cell.date-cell")));
+        String actualDate = cardDateElement.getText();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
+        Date date = formatter.parse(actualDate);
+        Assert.assertTrue(new Date().after(date));
+
+    }
+    @When("I click the upcoming events button")
+    public void clickUpcomingEventsButton(){eventsPage.clickUpcomingEvents();}
+    @Then("I see the upcoming events")
+    public void iSeeUpcomingEvents() throws ParseException {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WebElement cardDateElement = new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#app > div > main > section.evnt-panel.evnt-events-panel > div > div > div.evnt-events-tabs-container.tab-content > div > div.evnt-cards-container.with-sorting > div.evnt-events-row > div:nth-child(1) > div > a > div > div.evnt-card-heading > div > div > p")));
+        String actualDate = cardDateElement.getText();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
+        Date date = formatter.parse(actualDate.substring(4));
+        Assert.assertTrue(new Date().before(date));
 
     }
     @And("I click the eng button")

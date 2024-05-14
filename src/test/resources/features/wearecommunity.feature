@@ -35,9 +35,18 @@ Feature: Wearecommunity page
     When I click the A - Z button
     Then the cards should be in alphabetic order
 
+  Scenario: Changing between upcoming and past events
+    Given the communities portal is opened
+    When I click the events button
+    And I click the past events button
+    Then I see the past events
+    When I click the upcoming events button
+    Then I see the upcoming events
+
   Scenario: Changing languages
     Given the communities portal is opened
     When I click the eng button
     Then I see the language dropdown menu
     When I click the Русский button
     Then The site language should be russian
+

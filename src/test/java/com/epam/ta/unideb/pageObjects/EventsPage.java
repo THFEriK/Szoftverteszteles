@@ -21,6 +21,10 @@ public class EventsPage extends CommonPageObject {
 
     @FindBy(css = ".evnt-events-row .evnt-events-column")
     private List<WebElement> cards;
+    @FindBy(css = ".evnt-panel-wrapper .evnt-events-tabs-nav .evnt-tabs-list.nav.nav-tabs .evnt-tab-item.nav-item:nth-child(2) .evnt-tab-text.desktop")
+    private WebElement pastEventsButton;
+    @FindBy(css = "#app > div > main > section.evnt-panel.evnt-events-panel > div > div > div.evnt-events-tabs-nav > ul > li:nth-child(1) > a > span.evnt-tab-text.desktop")
+    private WebElement upcomingEventsButton;
 
     public void searchFor(String searchTerm) {
         searchField.sendKeys(searchTerm);
@@ -33,5 +37,7 @@ public class EventsPage extends CommonPageObject {
     public WebElement getCard() {
         return card;
     }
+    public void clickPastEvents() { pastEventsButton.click();}
+    public void clickUpcomingEvents() { upcomingEventsButton.click();}
 
 }
