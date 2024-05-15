@@ -50,3 +50,15 @@ Feature: Wearecommunity page
     When I click the Русский button
     Then The site language should be russian
 
+    Scenario: Filter communities by tag
+      Given the communities portal is opened
+      When I click the communities button
+      And I click on the Tag button
+      Then I see the tag dropdown menu
+      When I type "EventKit" in search on Tag dropdown
+      Then I see the checkbox menu
+      When I check the first option on the checkbox menu
+      Then I see the "COMMUNITY DAY" card on Communities page
+      And I see 1 card
+
+

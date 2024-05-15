@@ -28,6 +28,15 @@ public class CommunitiesPage extends CommonPageObject {
     @FindBy(css = ".evnt-dropdown-menu .dropdown-item:first-child")
     private WebElement alphabeticSortButton;
 
+    @FindBy(css = ".Button-module__button__Oq73a.evnt-filter-button")
+    private WebElement tagButton;
+
+    @FindBy(css = " .evnt-filter-menu-search-wrapper .evnt-text-fields.form-control.evnt-search")
+    private WebElement tagSearchField;
+
+    @FindBy(css = ".evnt-filter-menu-scroll > .evnt-filter-menu-items-wrapper > .evnt-filter-item:first-child > .evnt-checkbox.form-check > .form-check-label")
+    public WebElement eventKitCheckbox;
+
     public void searchFor(String searchTerm) {
         searchField.sendKeys(searchTerm);
     }
@@ -43,5 +52,13 @@ public class CommunitiesPage extends CommonPageObject {
     public void clickSortBy() {sortByButton.click();}
 
     public void clickAlphabeticSort() {alphabeticSortButton.click();}
+
+    public void clickTag() {tagButton.click();}
+
+    public void searchTagFor(String searchTerm) {
+        tagSearchField.sendKeys(searchTerm);
+    }
+
+    public void checkEventKitOption() {eventKitCheckbox.click();}
 
 }

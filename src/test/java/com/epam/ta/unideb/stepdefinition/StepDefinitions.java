@@ -186,4 +186,38 @@ public class StepDefinitions {
         new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
                 .until(ExpectedConditions.textToBe(By.cssSelector("#popular > div > span"),"Популярные"));
     }
+
+    @And("I click on the Tag button")
+    public void clickTagButton(){communitiesPage.clickTag();}
+
+    @Then("I see the tag dropdown menu")
+    public void iSeeTagDropdownMenu() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-filter-menu.evnt-dropdown-menu.dropdown-menu.with-arrow.show")));
+    }
+
+    @When("I type {string} in search on Tag dropdown")
+    public void iTypeInSearchOnTagDropdown(String searchTagString) {
+        communitiesPage.searchTagFor(searchTagString);
+    }
+
+    @Then("I see the checkbox menu")
+    public void iSeeTheCheckboxMenu() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-filter-menu-scroll .evnt-filter-menu-items-wrapper")));
+
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(communitiesPage.eventKitCheckbox));
+    }
+
+    @When("I check the first option on the checkbox menu")
+    public void iCheckTheOption() {
+        communitiesPage.checkEventKitOption();
+    }
+
+    @Then("I see the {string} card on Communities page")
+    public void iSeeTheCardOnCommunitiesPage(String title) {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.textToBePresentInElement(communitiesPage.getCard(), title));
+    }
 }
