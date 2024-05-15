@@ -43,10 +43,25 @@ Feature: Wearecommunity page
     When I click the upcoming events button
     Then I see the upcoming events
 
+  Scenario: Search for Articles with specific Tag
+    Given the communities portal is opened
+    When I click the articles button
+    And I click the Tag filter
+    And I type "DEI Awareness" in the dropdown search
+    And I select the "DEI Awareness" checkbox from the suggested results
+    Then I see 2 card on Articles Page
+
+  Scenario: Search for Articles with specific Community
+    Given the communities portal is opened
+    When I click the articles button
+    And I click the Community filter
+    And I type "EPAM Hungary Meets you!" in the dropdown search
+    And I select the "EPAM Hungary Meets you!" checkbox from the suggested results
+    Then I see all the card's community names are "EPAM Hungary Meets you!"
+
   Scenario: Changing languages
     Given the communities portal is opened
     When I click the eng button
     Then I see the language dropdown menu
     When I click the Русский button
     Then The site language should be russian
-

@@ -20,6 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
@@ -62,10 +63,42 @@ public class StepDefinitions {
         communitiesPage.searchFor(searchString);
     }
 
+    @And("I click the Tag filter")
+    public void iClickTheTagFilter() {
+        articlesPage.clickTagFilter();
+    }
+
+    @And("I click the Community filter")
+    public void iClickTheCommunityFilter() { articlesPage.clickCommunityFilter(); }
+
+    @And("I type {string} in the dropdown search")
+    public void iTypeInTagDropdownFilter(String searchString) {
+        articlesPage.dropdownSearchFor(searchString);
+    }
+
+    @And("I select the {string} checkbox from the suggested results")
+    public void iSelectCheckboxFromSuggestedResults(String checkboxValue) {
+        articlesPage.selectCheckboxFromSuggestedResults(checkboxValue);
+    }
+
     @Then("I see the {string} card")
     public void iSeeTheCard(String title) {
         new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
                 .until(ExpectedConditions.textToBePresentInElement(communitiesPage.getCard(), title));
+    }
+
+    @Then("I see all the card's community names are {string}")
+    public void iSeeAllCommunityNames(String community){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        List<WebElement> cards = articlesPage.getCards();
+        for (WebElement card : cards) {
+            new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                    .until(ExpectedConditions.textToBePresentInElement(card.findElement(By.cssSelector(".evnt-community-name")), community));
+        }
     }
 
     @And("I see {int} card")
@@ -102,6 +135,11 @@ public class StepDefinitions {
 
     @And("I see {int} card on Articles Page")
     public void iSeeCardArticles(int count) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Assert.assertEquals(count, articlesPage.getCardcountOnPage());
     }
 
