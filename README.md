@@ -4,7 +4,7 @@
 
 A tesztelés során a Selenium WebDriver-t használjuk, amely lehetővé teszi a weboldalak automatizált tesztelését. A tesztek Java nyelven íródnak, és a JUnit keretrendszert használjuk a tesztek futtatásához és validálásához.
 
-A tesztek során számos user story-t meghatároztunk, amely a Jira peojektünkben olvasható. A teszteket ezek alapján hajtjuk végre, és ellenőrizzük, hogy a weboldal a várt módon működik-e.
+A tesztek során számos user story-t meghatároztunk, amely a Jira projektünkben olvasható. A teszteket ezek alapján hajtjuk végre, és ellenőrizzük, hogy a weboldal a várt módon működik-e.
 
 ## Fejlesztési Környezet
 
