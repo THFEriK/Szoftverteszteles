@@ -34,7 +34,12 @@ public class ArticlesPage extends CommonPageObject {
 
     @FindBy(css = ".evnt-filters-wrapper .show-more")
     private WebElement moreFiltersButton;
-
+    @FindBy(css = ".evnt-filters-content-cell.evnt-results-cell p span")
+    private WebElement resultsSpan;
+    @FindBy(css = "#filter_language")
+    private WebElement languageFilterButton;
+    @FindBy(css = ".evnt-checkbox.form-check .form-check-label")
+    private List<WebElement> languageLabels;
     public void searchFor(String searchTerm) {
         searchField.sendKeys(searchTerm);
     }
@@ -65,5 +70,23 @@ public class ArticlesPage extends CommonPageObject {
 
     public WebElement getCheckbox(String checkboxValue) {
         return WebDriverFactory.getInstance().findElement(By.xpath("//label[normalize-space()='" + checkboxValue + "']"));
+    }
+
+    public void clickLanguageFilter() { languageFilterButton.click(); }
+
+    public void selectLanguageCheckbox(String language) {
+        for (int i = 0; i < languageLabels.size(); i++) {
+            if (languageLabels.get(i).getText().equals(language)) {
+                languageLabels.get(i).click();
+                break;
+            }
+        }
+    }
+
+    public int getResultCountOnPage() {
+        String resultsString = resultsSpan.getText();
+        int results = Integer.parseInt(resultsString);
+
+        return results;
     }
 }

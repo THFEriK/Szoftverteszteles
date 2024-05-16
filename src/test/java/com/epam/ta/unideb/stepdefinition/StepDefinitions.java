@@ -258,4 +258,114 @@ public class StepDefinitions {
         new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
                 .until(ExpectedConditions.textToBePresentInElement(communitiesPage.getCard(), title));
     }
+
+    @And("I click on the Location button")
+    public void clickLocationButton(){eventsPage.clickLocationButton();}
+
+    @Then("I see the location dropdown menu on Events Page")
+    public void iSeeLocationDropdownMenu() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-filters-wrapper .evnt-dropdown-menu.dropdown-menu.with-arrow.show")));
+    }
+
+    @When("I type {string} in search on the Location dropdown menu on Events Page")
+    public void iTypeInSearchOnLocationDropdown(String searchLocationString) {
+        eventsPage.searchLocationFor(searchLocationString);
+    }
+
+    @Then("I see the location checkbox menu on Events Page")
+    public void iSeeLocationCheckboxMenu() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-default-filters .evnt-filters-heading-cell:nth-child(3) .evnt-filter-menu-items-wrapper")));
+
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(eventsPage.locationCheckBox));
+    }
+
+    @When("I check the first option on the location checkbox menu on Events Page")
+    public void iCheckLocationCheckBox() {
+        eventsPage.checkLocationCheckBox();
+    }
+
+    @And("I click the More Filters button on Articles Page")
+    public void iClickTheMoreFiltersButtonOnArticlesPage() {
+        articlesPage.clickMoreFilters();
+    }
+
+    @Then("I see the More Filters menu on Articles Page")
+    public void iSeeTheMoreFiltersMenuOnArticlesPage() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-more-filters.collapse.show")));
+    }
+
+    @And("I click on the Language button from the More Filters menu")
+    public void iClickOnTheLanguageButtonFromTheMoreFiltersMenu() {
+        articlesPage.clickLanguageFilter();
+    }
+
+    @Then("I see the language dropdown menu on Articles Page")
+    public void iSeeTheLanguageDropdownMenuOnArticlesPage() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-filter-menu.evnt-dropdown-menu.dropdown-menu.with-arrow.show")));
+    }
+
+    @When("I select the {string} checkbox from the dropdown menu")
+    public void iSelectTheCheckboxFromTheDropdownMenu(String language) {
+        articlesPage.selectLanguageCheckbox(language);
+    }
+
+    @And("I see {int} results on Articles Page")
+    public void iSeeCountResultsOnArticlesPage(int count) {
+        Assert.assertEquals(count, articlesPage.getResultCountOnPage());
+    }
+
+    @And("I click on the More Filters button on Events Page")
+    public void clickMoreFiltersButton(){eventsPage.clickMoreFiltersButton();}
+
+    @And("I click on the Speaker button on Events Page")
+    public void clickSpeakerButton(){eventsPage.clickSpeakerButton();}
+
+    @Then("I see the speaker dropdown menu on Events Page")
+    public void iSeeSpeakerDropdownMenu() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-filters-wrapper .evnt-dropdown-menu.dropdown-menu.with-arrow.show")));
+    }
+
+    @When("I type {string} in search on the Speaker dropdown menu on Events Page")
+    public void iTypeInSearchOnSpeakerDropdown(String searchSpeakerString) {
+        eventsPage.searchSpeakerFor(searchSpeakerString);
+    }
+
+    @Then("I see the speaker checkbox menu on Events Page")
+    public void iSeeSpeakerCheckboxMenu() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-more-filters .evnt-filters-heading-cell:nth-child(3) .evnt-filter-menu-items-wrapper")));
+
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(eventsPage.speakerCheckBox));
+    }
+
+    @When("I check the first option on the speaker checkbox menu on Events Page")
+    public void iCheckSpeakerCheckBox() {
+        eventsPage.checkSpeakerCheckBox();
+    }
+
+    @And("I click on the Language button on Events Page")
+    public void iClickOnTheLanguageButtonOnEventsPage() {
+        eventsPage.clickLanguageButton();
+    }
+
+    @Then("I see the language checkbox menu on Events Page")
+    public void iSeeTheLanguageCheckboxMenuOnEventsPage() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-filters-wrapper .evnt-dropdown-menu.dropdown-menu.with-arrow.show")));
+    }
+
+    @When("I check the {string} language checkbox menu on Events Page")
+    public void iCheckTheLanguageCheckboxMenuOnEventsPage(String language) {
+        WebElement languageCheckbox = new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@data-value=\"" + language + "\"]")));
+
+        languageCheckbox.click();
+    }
 }
