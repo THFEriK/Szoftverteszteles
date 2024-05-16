@@ -25,6 +25,12 @@ public class EventsPage extends CommonPageObject {
     private WebElement pastEventsButton;
     @FindBy(css = "#app > div > main > section.evnt-panel.evnt-events-panel > div > div > div.evnt-events-tabs-nav > ul > li:nth-child(1) > a > span.evnt-tab-text.desktop")
     private WebElement upcomingEventsButton;
+    @FindBy(css = ".evnt-filters-wrapper #filter_location")
+    private WebElement locationFilterButton;
+    @FindBy(css = ".evnt-default-filters .evnt-filters-heading-cell:nth-child(3) .evnt-search")
+    private WebElement locationSearchField;
+    @FindBy(css = ".evnt-default-filters .evnt-filters-heading-cell:nth-child(3) .evnt-filter-menu-items-wrapper .evnt-filter-item:first-child .evnt-filter-item-collapse .form-check-label")
+    public WebElement locationCheckBox;
 
     public void searchFor(String searchTerm) {
         searchField.sendKeys(searchTerm);
@@ -39,5 +45,11 @@ public class EventsPage extends CommonPageObject {
     }
     public void clickPastEvents() { pastEventsButton.click();}
     public void clickUpcomingEvents() { upcomingEventsButton.click();}
+    public void clickLocationButton() {locationFilterButton.click();}
+    public void searchLocationFor(String searchTerm) {
+        locationSearchField.sendKeys(searchTerm);
+    }
+
+    public void checkLocationCheckBox() {locationCheckBox.click();}
 
 }

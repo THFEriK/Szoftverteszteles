@@ -258,4 +258,32 @@ public class StepDefinitions {
         new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
                 .until(ExpectedConditions.textToBePresentInElement(communitiesPage.getCard(), title));
     }
+
+    @And("I click on the Location button")
+    public void clickLocationButton(){eventsPage.clickLocationButton();}
+
+    @Then("I see the location dropdown menu on Events Page")
+    public void iSeeLocationDropdownMenu() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-filters-wrapper .evnt-dropdown-menu.dropdown-menu.with-arrow.show")));
+    }
+
+    @When("I type {string} in search on the Location dropdown menu on Events Page")
+    public void iTypeInSearchOnLocationDropdown(String searchLocationString) {
+        eventsPage.searchLocationFor(searchLocationString);
+    }
+
+    @Then("I see the location checkbox menu on Events Page")
+    public void iSeeLocationCheckboxMenu() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-default-filters .evnt-filters-heading-cell:nth-child(3) .evnt-filter-menu-items-wrapper")));
+
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(eventsPage.locationCheckBox));
+    }
+
+    @When("I check the first option on the location checkbox menu on Events Page")
+    public void iCheckTheLocationOption() {
+        eventsPage.checkLocationCheckBox();
+    }
 }

@@ -77,4 +77,16 @@ Feature: Wearecommunity page
       Then I see the "COMMUNITY DAY" card on Communities page
       And I see 1 card
 
+    Scenario: Search for events with specific Location
+      Given the communities portal is opened
+      When I click the events button
+      And I click on the Location button
+      Then I see the location dropdown menu on Events Page
+      When I type "Hungary" in search on the Location dropdown menu on Events Page
+      Then I see the location checkbox menu on Events Page
+      When I check the first option on the location checkbox menu on Events Page
+      Then I see the "Coolest Projects Hungary 2024. tavasz" card on Events Page
+      And I see 1 card on Events Page
+
+
 
