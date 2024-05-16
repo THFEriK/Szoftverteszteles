@@ -88,5 +88,17 @@ Feature: Wearecommunity page
       Then I see the "Coolest Projects Hungary 2024. tavasz" card on Events Page
       And I see 1 card on Events Page
 
+    Scenario: Search for events with specific Speaker
+      Given the communities portal is opened
+      When I click the events button
+      And I click on the More Filters button on Events Page
+      And I click on the Speaker button on Events Page
+      Then I see the speaker dropdown menu on Events Page
+      When I type "Denis Stuk" in search on the Speaker dropdown menu on Events Page
+      Then I see the speaker checkbox menu on Events Page
+      When I check the first option on the speaker checkbox menu on Events Page
+      Then I see the "JS CC Week #5" card on Events Page
+      And I see 1 card on Events Page
+
 
 
