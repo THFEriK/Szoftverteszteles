@@ -88,5 +88,19 @@ Feature: Wearecommunity page
       Then I see the "Coolest Projects Hungary 2024. tavasz" card on Events Page
       And I see 1 card on Events Page
 
-
+  Scenario Outline: Filter articles by language
+    Given the communities portal is opened
+    When I click the articles button
+    And I click the More Filters button on Articles Page
+    Then I see the More Filters menu on Articles Page
+    And I click on the Language button from the More Filters menu
+    Then I see the language dropdown menu on Articles Page
+    When I select the "<language>" checkbox from the dropdown menu
+    Then I see the "<card-title>" card on Articles Page
+    And I see <count> results on Articles Page
+    Examples:
+      | language  | card-title                               | count |
+      | English   | How To Drive Backlog Refinement Sessions | 1370  |
+      | Hungarian | Anyák napi különkiadás - gondolatok három EPAM-os édesanyától | 131   |
+      | German    | Amöbe, TPS, Scrum und XP                 | 2     |
 

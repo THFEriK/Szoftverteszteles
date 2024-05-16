@@ -286,4 +286,36 @@ public class StepDefinitions {
     public void iCheckTheLocationOption() {
         eventsPage.checkLocationCheckBox();
     }
+
+    @And("I click the More Filters button on Articles Page")
+    public void iClickTheMoreFiltersButtonOnArticlesPage() {
+        articlesPage.clickMoreFilters();
+    }
+
+    @Then("I see the More Filters menu on Articles Page")
+    public void iSeeTheMoreFiltersMenuOnArticlesPage() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-more-filters.collapse.show")));
+    }
+
+    @And("I click on the Language button from the More Filters menu")
+    public void iClickOnTheLanguageButtonFromTheMoreFiltersMenu() {
+        articlesPage.clickLanguageFilter();
+    }
+
+    @Then("I see the language dropdown menu on Articles Page")
+    public void iSeeTheLanguageDropdownMenuOnArticlesPage() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-filter-menu.evnt-dropdown-menu.dropdown-menu.with-arrow.show")));
+    }
+
+    @When("I select the {string} checkbox from the dropdown menu")
+    public void iSelectTheCheckboxFromTheDropdownMenu(String language) {
+        articlesPage.selectLanguageCheckbox(language);
+    }
+
+    @And("I see {int} results on Articles Page")
+    public void iSeeCountResultsOnArticlesPage(int count) {
+        Assert.assertEquals(count, articlesPage.getResultCountOnPage());
+    }
 }
