@@ -88,6 +88,16 @@ Feature: Wearecommunity page
       Then I see the "Coolest Projects Hungary 2024. tavasz" card on Events Page
       And I see 1 card on Events Page
 
+  Scenario: Search for events with specific Language
+    Given the communities portal is opened
+    When I click the events button
+    And I click on the More Filters button on Events Page
+    And I click on the Language button on Events Page
+    Then I see the language checkbox menu on Events Page
+    When I check the "Belarusian" language checkbox menu on Events Page
+    Then I see the "WBC: Board Games Wroclaw" card on Events Page
+    And I see 1 card on Events Page
+
   Scenario Outline: Filter articles by language
     Given the communities portal is opened
     When I click the articles button

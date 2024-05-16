@@ -349,4 +349,23 @@ public class StepDefinitions {
     public void iCheckSpeakerCheckBox() {
         eventsPage.checkSpeakerCheckBox();
     }
+
+    @And("I click on the Language button on Events Page")
+    public void iClickOnTheLanguageButtonOnEventsPage() {
+        eventsPage.clickLanguageButton();
+    }
+
+    @Then("I see the language checkbox menu on Events Page")
+    public void iSeeTheLanguageCheckboxMenuOnEventsPage() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-filters-wrapper .evnt-dropdown-menu.dropdown-menu.with-arrow.show")));
+    }
+
+    @When("I check the {string} language checkbox menu on Events Page")
+    public void iCheckTheLanguageCheckboxMenuOnEventsPage(String language) {
+        WebElement languageCheckbox = new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@data-value=\"" + language + "\"]")));
+
+        languageCheckbox.click();
+    }
 }

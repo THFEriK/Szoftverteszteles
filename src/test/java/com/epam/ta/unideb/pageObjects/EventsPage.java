@@ -31,6 +31,8 @@ public class EventsPage extends CommonPageObject {
     private WebElement moreFiltersButton;
     @FindBy(css = ".evnt-filters-wrapper #filter_speaker")
     private WebElement speakerFilterButton;
+    @FindBy(css = ".evnt-filters-wrapper #filter_language")
+    private WebElement languageFilterButton;
     @FindBy(css = ".evnt-default-filters .evnt-filters-heading-cell:nth-child(3) .evnt-search")
     private WebElement locationSearchField;
     @FindBy(css = ".evnt-more-filters .evnt-filters-heading-cell:nth-child(3) .evnt-search")
@@ -56,6 +58,7 @@ public class EventsPage extends CommonPageObject {
     public void clickLocationButton() {locationFilterButton.click();}
     public void clickMoreFiltersButton() {moreFiltersButton.click();}
     public void clickSpeakerButton() {speakerFilterButton.click();}
+    public void clickLanguageButton() {languageFilterButton.click();}
     public void searchLocationFor(String searchTerm) {
         locationSearchField.sendKeys(searchTerm);
     }
