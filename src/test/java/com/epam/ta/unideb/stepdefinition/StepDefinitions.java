@@ -11,6 +11,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -414,6 +415,9 @@ public class StepDefinitions {
     public void iCheckTheLanguageCheckboxMenuOnEventsPage(String language) {
         WebElement languageCheckbox = new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@data-value=\"" + language + "\"]")));
+
+        JavascriptExecutor je = (JavascriptExecutor) WebDriverFactory.getInstance();
+        je.executeScript("window.scrollBy(0, 100);");
 
         languageCheckbox.click();
     }
