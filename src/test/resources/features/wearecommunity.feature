@@ -47,7 +47,9 @@ Feature: Wearecommunity page
     Given the communities portal is opened
     When I click the articles button
     And I click the Tag filter
+    Then I see the "tag" dropdown menu on Articles Page
     And I type "DEI Awareness" in the dropdown search
+    Then I see the checkbox menu
     And I select the "DEI Awareness" checkbox from the suggested results
     Then I see 2 card on Articles Page
 
@@ -55,7 +57,9 @@ Feature: Wearecommunity page
     Given the communities portal is opened
     When I click the articles button
     And I click the Community filter
+    Then I see the "community" dropdown menu on Articles Page
     And I type "EPAM Hungary Meets you!" in the dropdown search
+    Then I see the checkbox menu
     And I select the "EPAM Hungary Meets you!" checkbox from the suggested results
     Then I see all the card's community names are "EPAM Hungary Meets you!"
 

@@ -268,6 +268,12 @@ public class StepDefinitions {
                 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-filters-wrapper .evnt-dropdown-menu.dropdown-menu.with-arrow.show")));
     }
 
+    @Then("I see the {string} dropdown menu on Articles Page")
+    public void iSeeCommunityDropdownMenuOnArticles(String type) {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-filters-wrapper .evnt-dropdown-menu.dropdown-menu.with-arrow.show")));
+    }
+
     @When("I type {string} in search on the Location dropdown menu on Events Page")
     public void iTypeInSearchOnLocationDropdown(String searchLocationString) {
         eventsPage.searchLocationFor(searchLocationString);
