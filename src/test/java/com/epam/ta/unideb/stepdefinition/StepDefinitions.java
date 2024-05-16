@@ -325,6 +325,33 @@ public class StepDefinitions {
         Assert.assertEquals(count, articlesPage.getResultCountOnPage());
     }
 
+    @And("I click on the Author button from the More Filters menu")
+    public void iClickOnTheAuthorButtonFromTheMoreFiltersMenu() {
+        articlesPage.clickAuthorFilter();
+    }
+
+    @Then("I see the Author dropdown menu on Articles Page")
+    public void iSeeTheAuthorDropdownMenuOnArticlesPage() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-filter-menu.evnt-dropdown-menu.dropdown-menu.with-arrow.show")));
+    }
+
+    @When("I type {string} in search on the Author dropdown menu on Articles Page")
+    public void iTypeInSearchOnTheAuthorDropdownMenuOnArticlesPage(String searchAuthorString) {
+        articlesPage.searchAuthor(searchAuthorString);
+    }
+
+    @Then("I see the author checkbox menu on Articles Page")
+    public void iSeeTheAuthorCheckboxMenuOnArticlesPage() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#filter_author_search_0")));
+    }
+
+    @When("I check the first option on the author checkbox menu on Articles Page")
+    public void iCheckTheFirstOptionOnTheAuthorCheckboxMenuOnArticlesPage() {
+        articlesPage.checkAuthorCheckBox();
+    }
+
     @And("I click on the More Filters button on Events Page")
     public void clickMoreFiltersButton(){eventsPage.clickMoreFiltersButton();}
 

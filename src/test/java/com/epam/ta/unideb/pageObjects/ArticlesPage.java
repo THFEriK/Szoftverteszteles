@@ -40,6 +40,13 @@ public class ArticlesPage extends CommonPageObject {
     private WebElement languageFilterButton;
     @FindBy(css = ".evnt-checkbox.form-check .form-check-label")
     private List<WebElement> languageLabels;
+    @FindBy(css = "#filter_author")
+    private WebElement authorFilterButton;
+    @FindBy(css = ".evnt-dropdown-filter.dropdown.show .evnt-filter-menu-search-wrapper .evnt-text-fields.form-control.evnt-search")
+    private WebElement authorSearchField;
+    @FindBy(css = "label[for='filter_author_search_0']")
+    public WebElement authorCheckBox;
+
     public void searchFor(String searchTerm) {
         searchField.sendKeys(searchTerm);
     }
@@ -89,4 +96,10 @@ public class ArticlesPage extends CommonPageObject {
 
         return results;
     }
+
+    public void clickAuthorFilter() { authorFilterButton.click(); }
+
+    public void searchAuthor(String searchAuthorString) { authorSearchField.sendKeys(searchAuthorString); }
+
+    public void checkAuthorCheckBox() { authorCheckBox.click(); }
 }

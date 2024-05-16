@@ -118,6 +118,24 @@ Feature: Wearecommunity page
       | Hungarian | Anyák napi különkiadás - gondolatok három EPAM-os édesanyától | 131   |
       | German    | Amöbe, TPS, Scrum und XP                 | 2     |
 
+  Scenario Outline: Filter articles by author
+    Given the communities portal is opened
+    When I click the articles button
+    And I click the More Filters button on Articles Page
+    Then I see the More Filters menu on Articles Page
+    And I click on the Author button from the More Filters menu
+    Then I see the Author dropdown menu on Articles Page
+    When I type "<author>" in search on the Author dropdown menu on Articles Page
+    Then I see the author checkbox menu on Articles Page
+    When I check the first option on the author checkbox menu on Articles Page
+    Then I see the "<card-title>" card on Articles Page
+    And I see <count> results on Articles Page
+    Examples:
+      | author              | card-title                                          | count |
+      | Adam Davidson       | Key Takeaways from Europe’s Biggest Data Conference | 1     |
+      | Tatsiana Paulovich  | Docs Release Notes PI5 (10.2-10.7)                  | 1     |
+      | Anna Mekhanova      | Global Accessibility Awareness Day 2022             | 2     |
+
     Scenario: Search for events with specific Speaker
       Given the communities portal is opened
       When I click the events button
