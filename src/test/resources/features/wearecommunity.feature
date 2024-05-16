@@ -114,7 +114,7 @@ Feature: Wearecommunity page
     And I see <count> results on Articles Page
     Examples:
       | language  | card-title                               | count |
-      | English   | How To Drive Backlog Refinement Sessions | 1370  |
+      | English   | Ignite Your Career with Our Advanced Java & Cloud Mentoring Program | 1371  |
       | Hungarian | Anyák napi különkiadás - gondolatok három EPAM-os édesanyától | 131   |
       | German    | Amöbe, TPS, Scrum und XP                 | 2     |
 
