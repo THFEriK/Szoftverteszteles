@@ -136,6 +136,18 @@ Feature: Wearecommunity page
       | Tatsiana Paulovich  | Docs Release Notes PI5 (10.2-10.7)                  | 1     |
       | Anna Mekhanova      | Global Accessibility Awareness Day 2022             | 2     |
 
+  Scenario: Login prompt when liking an article
+    Given the communities portal is opened
+    When I click the articles button
+    And I click on the heart icon on the first article card
+    Then I see the login window
+
+  Scenario: Login prompt when saving an article to collection
+    Given the communities portal is opened
+    When I click the articles button
+    And I click on the bookmark icon on the first article card
+    Then I see the login window
+
     Scenario: Search for events with specific Speaker
       Given the communities portal is opened
       When I click the events button

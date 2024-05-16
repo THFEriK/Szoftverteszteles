@@ -46,6 +46,11 @@ public class ArticlesPage extends CommonPageObject {
     private WebElement authorSearchField;
     @FindBy(css = "label[for='filter_author_search_0']")
     public WebElement authorCheckBox;
+    @FindBy(css = ".evnt-articles-row .evnt-article-like.like:first-of-type")
+    public WebElement heartIconOnFirstArticle;
+
+    @FindBy(css = ".evnt-articles-row .evnt-add-to-collection.collection-tooltip:first-of-type")
+    public WebElement bookmarkIconOnFirstArticle;
 
     public void searchFor(String searchTerm) {
         searchField.sendKeys(searchTerm);
@@ -102,4 +107,8 @@ public class ArticlesPage extends CommonPageObject {
     public void searchAuthor(String searchAuthorString) { authorSearchField.sendKeys(searchAuthorString); }
 
     public void checkAuthorCheckBox() { authorCheckBox.click(); }
+
+    public void clickHeartIconOnFirstArticle() { heartIconOnFirstArticle.click(); }
+
+    public void clickBookmarkIconOnFirstArticle() { bookmarkIconOnFirstArticle.click(); }
 }

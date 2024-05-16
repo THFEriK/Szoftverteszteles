@@ -352,6 +352,22 @@ public class StepDefinitions {
         articlesPage.checkAuthorCheckBox();
     }
 
+    @And("I click on the heart icon on the first article card")
+    public void iClickOnTheHeartIconOnTheFirstArticleCard() {
+        articlesPage.clickHeartIconOnFirstArticle();
+    }
+
+    @And("I click on the bookmark icon on the first article card")
+    public void iClickOnTheBookmarkIconOnTheFirstArticleCard() {
+        articlesPage.clickBookmarkIconOnFirstArticle();
+    }
+
+    @Then("I see the login window")
+    public void iSeeTheLoginWindow() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-login-wrapper")));
+    }
+
     @And("I click on the More Filters button on Events Page")
     public void clickMoreFiltersButton(){eventsPage.clickMoreFiltersButton();}
 
