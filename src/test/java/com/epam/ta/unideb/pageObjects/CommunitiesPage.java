@@ -37,6 +37,12 @@ public class CommunitiesPage extends CommonPageObject {
     @FindBy(css = ".evnt-filter-menu-scroll > .evnt-filter-menu-items-wrapper > .evnt-filter-item:first-child > .evnt-checkbox.form-check > .form-check-label")
     public WebElement eventKitCheckbox;
 
+    @FindBy(css = "#filter_location.Button-module__dropdown__S4ts5.evnt-filter-button")
+    public WebElement locationButton;
+
+    @FindBy(css = ".evnt-filter-menu-items-wrapper .evnt-filter-item:first-child .evnt-filter-item-collapse .form-check-label")
+    public WebElement armeniaCheckbox;
+
     public void searchFor(String searchTerm) {
         searchField.sendKeys(searchTerm);
     }
@@ -61,4 +67,7 @@ public class CommunitiesPage extends CommonPageObject {
 
     public void checkEventKitOption() {eventKitCheckbox.click();}
 
+    public void clickLocation() {locationButton.click();}
+
+    public void checkArmeniaOption() {armeniaCheckbox.click();}
 }

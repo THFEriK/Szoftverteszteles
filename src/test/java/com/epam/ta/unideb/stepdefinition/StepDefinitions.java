@@ -421,4 +421,23 @@ public class StepDefinitions {
 
         languageCheckbox.click();
     }
+
+    @And("I click on the Location button on communities page")
+    public void iClickOnTheLocationButtonOnCommunitiesPage() {
+        communitiesPage.clickLocation();
+    }
+
+    @Then("I see the location dropdown menu on Communities Page")
+    public void iSeeTheLocationDropdownMenuOnCommunitiesPage() {
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".evnt-filter-menu-scroll .evnt-filter-menu-items-wrapper")));
+
+        new WebDriverWait(WebDriverFactory.getInstance(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(communitiesPage.armeniaCheckbox));
+    }
+
+    @When("I check the first option on the location checkbox menu on Communities Page")
+    public void iCheckTheFirstOptionOnTheLocationCheckboxMenuOnCommunitiesPage() {
+        communitiesPage.checkArmeniaOption();
+    }
 }

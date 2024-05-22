@@ -160,3 +160,12 @@ Feature: Wearecommunity page
       Then I see the "JS CC Week #5" card on Events Page
       And I see 1 card on Events Page
 
+  Scenario: Filter communities by location
+    Given the communities portal is opened
+    When I click the communities button
+    And I click on the Location button on communities page
+    Then I see the location dropdown menu on Communities Page
+    When I check the first option on the location checkbox menu on Communities Page
+    Then I see the "Quality Assurance Hub Armenia" card on Communities page
+    And I see 2 card
+
